@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,25 +20,19 @@
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <h1>Welcome to Telecom Billing System</h1>
-        <p>Manage your telecom plans and bills with ease.</p>
-    </section>
-
-    <section class="plans">
-        <h2>Available Plans</h2>
-        <div class="plan-cards">
-            <!-- Example Plan Card -->
-            <div class="card">
-                <h3>Plan Name</h3>
-                <p>Details about the plan.</p>
-                <p><strong>Price:</strong> $XX/month</p>
-                <button class="btn">Subscribe</button>
-            </div>
-            <!-- Repeat for other plans -->
+        <p>Manage your telecom plans, bills, and subscriptions with ease.</p>
+        <div class="hero-buttons">
+            <a href="/register" class="btn">Get Started</a>
+            <a href="/plans" class="btn btn-secondary">View Plans</a>
         </div>
     </section>
 
+    
+
+    <!-- Create Bill Section -->
     <section class="create-bill">
         <h2>Create a New Bill</h2>
         <form action="/bills" method="POST">
@@ -53,6 +47,31 @@
 
             <button type="submit" class="btn">Create Bill</button>
         </form>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Choose Us?</h2>
+        <div class="feature-cards">
+            <div class="card">
+                <h3>Easy Management</h3>
+                <p>Track and manage your telecom bills and plans effortlessly.</p>
+            </div>
+            <div class="card">
+                <h3>Secure Payments</h3>
+                <p>Make secure and hassle-free payments for your bills.</p>
+            </div>
+            <div class="card">
+                <h3>24/7 Support</h3>
+                <p>Our team is here to assist you anytime, anywhere.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="cta">
+        <h2>Ready to Simplify Your Telecom Experience?</h2>
+        <a href="/register" class="btn">Sign Up Now</a>
     </section>
 
     <footer>

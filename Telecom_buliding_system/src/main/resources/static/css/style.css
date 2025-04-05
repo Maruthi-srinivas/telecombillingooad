@@ -36,19 +36,53 @@ body {
     font-weight: bold;
 }
 
+/* Hero Section */
 .hero {
     text-align: center;
-    padding: 50px 20px;
-    background-color: #e9ecef;
+    padding: 100px 20px;
+    background: linear-gradient(to right, #007bff, #0056b3);
+    color: white;
 }
 
 .hero h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 3em;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .hero p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero-buttons .btn {
+    padding: 15px 30px;
     font-size: 1.2em;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: #0056b3;
+    transition: background-color 0.3s ease;
+}
+
+.hero-buttons .btn:hover {
+    background-color: #003f7f;
+}
+
+.hero-buttons .btn-secondary {
+    background-color: #f4f4f9;
+    color: #0056b3;
+}
+
+.hero-buttons .btn-secondary:hover {
+    background-color: #ddd;
 }
 
 .plans {
@@ -265,4 +299,86 @@ footer {
 
 .bills table tr:nth-child(even) {
     background-color: #f9f9f9;
+}
+
+/* Features Section */
+.features {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f4f4f9;
+}
+
+.features h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-cards .card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-cards .card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-cards .card h3 {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.feature-cards .card p {
+    color: #555;
+}
+
+/* Call-to-Action Section */
+.cta {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #007bff;
+    color: white;
+}
+
+.cta h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.cta .btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: #0056b3;
+    transition: background-color 0.3s ease;
+}
+
+.cta .btn:hover {
+    background-color: #003f7f;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
