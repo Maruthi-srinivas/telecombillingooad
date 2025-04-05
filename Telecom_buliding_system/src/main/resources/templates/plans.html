@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plans</title>
+    <title>Available Plans</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -12,6 +12,7 @@
             <div class="logo">Telecom Billing</div>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
+                <li><a href="/register">Register</a></li>
                 <li><a href="/plans">Plans</a></li>
                 <li><a href="/bills">Bills</a></li>
                 <li><a href="/contact">Contact Us</a></li>
@@ -21,10 +22,18 @@
 
     <section class="plans">
         <h2>Available Plans</h2>
-        <ul>
-            <!-- Loop through plans -->
-            <li th:each="plan : ${plans}" th:text="${plan}"></li>
-        </ul>
+        <div class="plan-cards">
+            <div th:each="plan : ${plans}" class="card">
+                <h3 th:text="${plan.name}">Plan Name</h3>
+                <p><strong>Price:</strong> $<span th:text="${plan.price}">XX</span>/month</p>
+                <p th:text="${plan.description}">Plan Description</p>
+                <button class="btn">Subscribe</button>
+            </div>
+            <!-- If no plans are available -->
+            <div th:if="${#lists.isEmpty(plans)}" class="no-plans">
+                <p>No plans are currently available.</p>
+            </div>
+        </div>
     </section>
 
     <footer>

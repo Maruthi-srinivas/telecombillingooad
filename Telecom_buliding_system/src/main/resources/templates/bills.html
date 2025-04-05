@@ -12,6 +12,7 @@
             <div class="logo">Telecom Billing</div>
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
+                <li><a href="/register">Register</a></li>
                 <li><a href="/plans">Plans</a></li>
                 <li><a href="/bills">Bills</a></li>
                 <li><a href="/contact">Contact Us</a></li>
@@ -20,18 +21,29 @@
     </header>
 
     <section class="bills">
-        <h2>Your Bills</h2>
-        <ul>
-            <!-- Loop through bills -->
-            <li th:each="bill : ${bills}">
-                User: <span th:text="${bill.user.name}"></span>,
-                Plan: <span th:text="${bill.plan.name}"></span>,
-                Amount: <span th:text="${bill.amount}"></span>,
-                Status: <span th:text="${bill.status}"></span>
-            </li>
-        </ul>
-        <div th:if="${message}" class="message" th:text="${message}"></div>
-        <div th:if="${error}" class="error" th:text="${error}"></div>
+        <h2>Billing Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bill ID</th>
+                    <th>User</th>
+                    <th>Plan</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="bill : ${bills}">
+                    <td th:text="${bill.id}">1</td>
+                    <td th:text="${bill.user.name}">User Name</td>
+                    <td th:text="${bill.plan.name}">Plan Name</td>
+                    <td th:text="${bill.amount}">$50.00</td>
+                    <td th:text="${#dates.format(bill.dueDate, 'yyyy-MM-dd')}">2025-04-10</td>
+                    <td th:text="${bill.status}">Paid</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
     <footer>

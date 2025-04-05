@@ -52,37 +52,53 @@ body {
 }
 
 .plans {
-    padding: 20px;
+    padding: 40px 20px;
     text-align: center;
 }
 
 .plan-cards {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
     flex-wrap: wrap;
 }
 
 .card {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid #ddd;
     width: 250px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card h3 {
+    color: #007bff;
+    margin-bottom: 15px;
     margin-top: 0;
+}
+
+.card p {
+    margin: 10px 0;
 }
 
 .card .btn {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .card .btn:hover {
@@ -135,4 +151,118 @@ footer {
     background-color: #007bff;
     color: white;
     margin-top: 20px;
+}
+
+.no-plans {
+    text-align: center;
+    padding: 40px;
+    grid-column: 1 / -1;
+}
+
+/* Registration Page Styling */
+.registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    background-color: #f4f4f9;
+    min-height: 80vh;
+}
+
+.registration h2 {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.registration form {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.registration form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.registration form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.registration form .btn {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.registration form .btn:hover {
+    background-color: #0056b3;
+}
+
+.registration .message {
+    margin-top: 15px;
+    font-size: 1em;
+    color: green;
+    text-align: center;
+}
+
+.registration .message.error {
+    color: red;
+}
+
+/* Bills Page Styling */
+.bills {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.bills h2 {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.bills table {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bills table th, .bills table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.bills table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.bills table tr:nth-child(even) {
+    background-color: #f9f9f9;
 }

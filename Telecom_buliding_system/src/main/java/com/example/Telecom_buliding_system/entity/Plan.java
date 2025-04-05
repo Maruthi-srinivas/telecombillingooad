@@ -11,7 +11,7 @@ public class Plan {
 
     private String name;
     private Double price;
-
+    private String description;
     @OneToMany(mappedBy = "plan")
     private List<Bill> bills;
 
@@ -46,5 +46,12 @@ public class Plan {
     
     public void setBills(List<Bill> bills) {
         this.bills = bills;
+    }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
