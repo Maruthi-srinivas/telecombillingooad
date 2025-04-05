@@ -1,4 +1,4 @@
-package com.example.Telecom_buliding_system.controller;
+package com.example.Telecom_buliding_system;
 
 import com.example.Telecom_buliding_system.entity.Plan;
 import com.example.Telecom_buliding_system.repository.PlanRepository;

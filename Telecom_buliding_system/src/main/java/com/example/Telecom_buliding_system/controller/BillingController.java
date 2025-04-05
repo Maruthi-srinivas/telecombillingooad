@@ -15,6 +15,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/bills")
 public class BillingController {
+
     private final BillingService billingService;
     private final UserRepository userRepository;
     private final PlanRepository planRepository;
@@ -27,9 +28,9 @@ public class BillingController {
 
     @PostMapping
     public String createBill(@RequestParam("userId") Long userId,
-                             @RequestParam("amount") Double amount,
-                             @RequestParam("planId") Long planId,
-                             Model model) {
+            @RequestParam("amount") Double amount,
+            @RequestParam("planId") Long planId,
+            Model model) {
         // Fetch User and Plan from the database
         Optional<User> user = userRepository.findById(userId);
         Optional<Plan> plan = planRepository.findById(planId);
@@ -50,5 +51,12 @@ public class BillingController {
         // Fetch all bills and pass them to the template
         model.addAttribute("bills", billingService.getAllBills());
         return "bills";
+    }
+
+    @GetMapping
+    public String getAllBills(Model model) {
+        // Fetch all bills from the database
+        model.addAttribute("bills", billingService.getAllBills());
+        return "bills"; // Render the bills.html template
     }
 }
