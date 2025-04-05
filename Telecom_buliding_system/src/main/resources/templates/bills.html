@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bills</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Telecom Billing</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/plans">Plans</a></li>
+                <li><a href="/bills">Bills</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="bills">
+        <h2>Your Bills</h2>
+        <ul>
+            <!-- Loop through bills -->
+            <li th:each="bill : ${bills}">
+                User: <span th:text="${bill.user.name}"></span>,
+                Plan: <span th:text="${bill.plan.name}"></span>,
+                Amount: <span th:text="${bill.amount}"></span>,
+                Status: <span th:text="${bill.status}"></span>
+            </li>
+        </ul>
+        <div th:if="${message}" class="message" th:text="${message}"></div>
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Telecom Billing System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
