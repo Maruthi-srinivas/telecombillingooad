@@ -1,8 +1,23 @@
+/* Background Animation */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background: linear-gradient(-45deg, #007bff, #0056b3, #003f7f, #001f3f);
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
     color: #333;
 }
 
@@ -139,44 +154,63 @@ body {
     background-color: #0056b3;
 }
 
+/* Create Bill Section */
 .create-bill {
-    padding: 20px;
+    padding: 40px;
     text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 40px auto;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.create-bill h2 {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 20px;
 }
 
 .create-bill form {
-    display: inline-block;
-    text-align: left;
-    max-width: 400px;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .create-bill label {
-    display: block;
-    margin-bottom: 5px;
     font-weight: bold;
+    color: #333;
 }
 
 .create-bill input {
-    width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.create-bill input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .create-bill .btn {
-    width: 100%;
+    padding: 12px;
+    font-size: 1.2em;
+    border-radius: 5px;
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .create-bill .btn:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 footer {
@@ -202,23 +236,34 @@ footer {
     padding: 50px 20px;
     background-color: #f4f4f9;
     min-height: 80vh;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .registration h2 {
-    font-size: 2em;
+    font-size: 2.5em;
     color: #007bff;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.registration p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
 }
 
 .registration form {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
     max-width: 400px;
     width: 100%;
     text-align: left;
     border: 1px solid #ddd;
+}
+
+.registration .form-group {
+    margin-bottom: 20px;
 }
 
 .registration form label {
@@ -231,10 +276,16 @@ footer {
 .registration form input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registration form input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
 }
 
 .registration form .btn {
@@ -242,15 +293,16 @@ footer {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .registration form .btn:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 .registration .message {
@@ -324,7 +376,10 @@ footer {
 .features {
     padding: 50px 20px;
     text-align: center;
-    background-color: #f4f4f9;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .features h2 {
@@ -344,14 +399,15 @@ footer {
 .feature-cards .card {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-cards .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-cards .card h3 {
@@ -475,10 +531,14 @@ footer {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+section {
+    animation: fadeIn 1.5s ease-in-out;
 }
