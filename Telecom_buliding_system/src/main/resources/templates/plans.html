@@ -24,10 +24,12 @@
         <h2>Available Plans</h2>
         <div class="plan-cards">
             <div th:each="plan : ${plans}" class="card">
-                <h3 th:text="${plan.name}">Plan Name</h3>
+                <h3 th:text="'Plan Name: ' + ${plan.name}">Plan Name</h3>
+                <p><strong>Plan ID:</strong> <span th:text="${plan.id}">XX</span></p>
                 <p><strong>Price:</strong> $<span th:text="${plan.price}">XX</span>/month</p>
                 <p th:text="${plan.description}">Plan Description</p>
-                <button class="btn">Subscribe</button>
+                <!-- Subscribe Button -->
+                <a th:href="'/bills/create?planId=' + ${plan.id} + '&amount=' + ${plan.price}" class="btn">Subscribe</a>
             </div>
             <!-- If no plans are available -->
             <div th:if="${#lists.isEmpty(plans)}" class="no-plans">

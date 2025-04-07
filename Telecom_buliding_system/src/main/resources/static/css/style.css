@@ -131,14 +131,20 @@ body {
     transform: translateY(-5px);
 }
 
+/* Plans Page Styling */
 .card h3 {
-    color: #007bff;
+    color: #8BA8FF; /* Updated font color for plan name */
     margin-bottom: 15px;
     margin-top: 0;
 }
 
 .card p {
+    color: #333; /* Updated font color for plan details */
     margin: 10px 0;
+}
+
+.card p strong {
+    color: #8BA8FF; /* Highlighted font color for labels like "Plan ID" */
 }
 
 .card .btn {

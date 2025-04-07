@@ -59,4 +59,13 @@ public class BillingController {
         model.addAttribute("bills", billingService.getAllBills());
         return "bills"; // Render the bills.html template
     }
+
+    @GetMapping("/create")
+    public String createBillForm(@RequestParam("planId") Long planId,
+                                 @RequestParam("amount") Double amount,
+                                 Model model) {
+        model.addAttribute("planId", planId);
+        model.addAttribute("amount", amount);
+        return "create-bill"; // Render the create-bill.html template
+    }
 }
