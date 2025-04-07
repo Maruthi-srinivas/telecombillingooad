@@ -33,6 +33,7 @@ public class RegistrationController {
             return "registration"; // Return to the registration page with an error message
         }
 
+        user.setPassword(password); // Set the password
         userRepository.save(user); // Save the user if passwords match
         model.addAttribute("message", "User registered successfully! Your ID is: " + user.getId());
         return "registration";
