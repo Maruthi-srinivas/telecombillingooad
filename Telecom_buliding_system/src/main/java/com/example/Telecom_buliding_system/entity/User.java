@@ -13,6 +13,7 @@ public class User {
     private String email;
     private String phoneNumber; // New field for phone number
     private String password; // New field for password
+    private String role; // "USER" or "ADMIN"
 
     @OneToMany(mappedBy = "user")
     private List<Bill> bills;
@@ -56,6 +57,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public List<Bill> getBills() {

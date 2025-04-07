@@ -30,12 +30,13 @@ public class RegistrationController {
                                Model model) {
         if (!password.equals(confirmPassword)) {
             model.addAttribute("message", "Passwords do not match!");
-            return "registration"; // Return to the registration page with an error message
+            return "registration";
         }
 
-        user.setPassword(password); // Set the password
-        userRepository.save(user); // Save the user if passwords match
-        model.addAttribute("message", "User registered successfully! Your ID is: " + user.getId());
-        return "registration";
+        user.setPassword(password);
+        user.setRole("USER"); // Default role is USER
+        userRepository.save(user);
+        model.addAttribute("message", "User registered successfully! Please log in.");
+        return "redirect:/login";
     }
 }

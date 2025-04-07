@@ -3,9 +3,11 @@ package com.example.Telecom_buliding_system.controller;
 import com.example.Telecom_buliding_system.entity.Bill;
 import com.example.Telecom_buliding_system.entity.Plan;
 import com.example.Telecom_buliding_system.entity.User;
+import com.example.Telecom_buliding_system.repository.BillRepository;
 import com.example.Telecom_buliding_system.repository.PlanRepository;
 import com.example.Telecom_buliding_system.repository.UserRepository;
 import com.example.Telecom_buliding_system.service.BillingService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +18,19 @@ import java.util.Optional;
 @RequestMapping("/bills")
 public class BillingController {
 
-    private final BillingService billingService;
+    private final BillRepository billRepository;
     private final UserRepository userRepository;
     private final PlanRepository planRepository;
+    private final BillingService billingService; // Add BillingService
 
-    public BillingController(BillingService billingService, UserRepository userRepository, PlanRepository planRepository) {
-        this.billingService = billingService;
+    public BillingController(BillRepository billRepository,
+            UserRepository userRepository,
+            PlanRepository planRepository,
+            BillingService billingService) { // Inject BillingService
+        this.billRepository = billRepository;
         this.userRepository = userRepository;
         this.planRepository = planRepository;
+        this.billingService = billingService; // Initialize BillingService
     }
 
     @PostMapping
@@ -36,21 +43,20 @@ public class BillingController {
         Optional<Plan> plan = planRepository.findById(planId);
 
         if (user.isPresent() && plan.isPresent()) {
-            // Create and save the bill
+            // Create and save the bill using BillingService
             Bill bill = new Bill();
             bill.setUser(user.get());
             bill.setPlan(plan.get());
             bill.setAmount(amount);
             bill.setStatus("Pending");
-            billingService.createBill(bill);
+            billingService.createBill(bill); // Use BillingService to save the bill
+
             model.addAttribute("message", "Bill created successfully!");
+            return "redirect:/bills"; // Redirect to the bills page
         } else {
             model.addAttribute("error", "Invalid User ID or Plan ID.");
+            return "redirect:/plans"; // Redirect to plans page if invalid
         }
-
-        // Fetch all bills and pass them to the template
-        model.addAttribute("bills", billingService.getAllBills());
-        return "bills";
     }
 
     @GetMapping
@@ -62,10 +68,27 @@ public class BillingController {
 
     @GetMapping("/create")
     public String createBillForm(@RequestParam("planId") Long planId,
-                                 @RequestParam("amount") Double amount,
-                                 Model model) {
-        model.addAttribute("planId", planId);
-        model.addAttribute("amount", amount);
-        return "create-bill"; // Render the create-bill.html template
+            @RequestParam("amount") Double amount,
+            HttpSession session,
+            Model model) {
+        // Fetch the logged-in user
+        User loggedInUser = (User) session.getAttribute("loggedInUser");
+        if (loggedInUser == null) {
+            return "redirect:/login"; // Redirect to login if no user is logged in
+        }
+
+        // Fetch the plan details
+        Optional<Plan> plan = planRepository.findById(planId);
+        if (plan.isPresent()) {
+            model.addAttribute("userId", loggedInUser.getId());
+            model.addAttribute("userName", loggedInUser.getName());
+            model.addAttribute("planId", plan.get().getId());
+            model.addAttribute("planName", plan.get().getName());
+            model.addAttribute("amount", amount);
+            return "create-bill"; // Render the create-bill.html template
+        } else {
+            model.addAttribute("error", "Invalid Plan ID.");
+            return "redirect:/plans"; // Redirect to plans page if the plan is invalid
+        }
     }
 }

@@ -30,23 +30,39 @@
         </div>
     </section>
 
-    
+    <section class="bills">
+        <h2>Your Bills</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bill ID</th>
+                    <th>Plan Name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="bill : ${bills}">
+                    <td th:text="${bill.id}">1</td>
+                    <td th:text="${bill.plan.name}">Plan A</td>
+                    <td th:text="${bill.amount}">$50.00</td>
+                    <td th:text="${bill.status}">Pending</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-    <!-- Create Bill Section -->
-    <section class="create-bill">
-        <h2>Create a New Bill</h2>
-        <form action="/bills" method="POST">
-            <label for="userId">User ID:</label>
-            <input type="number" id="userId" name="userId" placeholder="Enter User ID" required>
-
-            <label for="amount">Amount:</label>
-            <input type="number" id="amount" name="amount" placeholder="Enter Amount" required>
-
-            <label for="planId">Plan ID:</label>
-            <input type="number" id="planId" name="planId" placeholder="Enter Plan ID" required>
-
-            <button type="submit" class="btn">Create Bill</button>
-        </form>
+    <section class="plans">
+        <h2>Available Plans</h2>
+        <div class="plan-cards">
+            <div th:each="plan : ${plans}" class="card">
+                <h3 th:text="'Plan Name: ' + ${plan.name}">Plan Name</h3>
+                <p><strong>Plan ID:</strong> <span th:text="${plan.id}">XX</span></p>
+                <p><strong>Price:</strong> $<span th:text="${plan.price}">XX</span>/month</p>
+                <p th:text="${plan.description}">Plan Description</p>
+                <a th:href="'/bills/create?planId=' + ${plan.id} + '&amount=' + ${plan.price}" class="btn">Subscribe</a>
+            </div>
+        </div>
     </section>
 
     <!-- Features Section -->
