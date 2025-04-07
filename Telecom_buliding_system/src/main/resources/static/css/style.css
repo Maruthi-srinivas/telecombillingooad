@@ -457,19 +457,20 @@ footer {
 .contact {
     padding: 50px 20px;
     text-align: center;
-    background-color: #f4f4f9;
+    background-color: #E1EEFF; /* Same background color as other pages */
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .contact h2 {
     font-size: 2.5em;
-    color: #007bff;
+    color: #8BA8FF; /* Consistent heading color */
     margin-bottom: 20px;
 }
 
 .contact p {
     font-size: 1.2em;
     margin-bottom: 30px;
-    color: #555;
+    color: #555; /* Visible font color */
 }
 
 .contact ul {
@@ -481,7 +482,7 @@ footer {
 .contact ul li {
     font-size: 1.2em;
     margin-bottom: 10px;
-    color: #333;
+    color: #333; /* Consistent text color */
 }
 
 .contact form {
@@ -510,11 +511,19 @@ footer {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact form input:focus,
+.contact form textarea:focus {
+    border-color: #8BA8FF;
+    box-shadow: 0 0 5px rgba(139, 168, 255, 0.5);
+    outline: none;
 }
 
 .contact form .btn {
     width: 100%;
-    background-color: #007bff;
+    background-color: #8BA8FF;
     color: white;
     border: none;
     padding: 10px;
@@ -525,7 +534,7 @@ footer {
 }
 
 .contact form .btn:hover {
-    background-color: #0056b3;
+    background-color: #6A8AFF;
 }
 
 .contact .success-message {

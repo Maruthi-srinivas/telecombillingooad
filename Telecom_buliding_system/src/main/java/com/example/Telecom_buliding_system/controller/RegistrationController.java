@@ -24,8 +24,16 @@ public class RegistrationController {
 
     // Handle registration form submission
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user, Model model) {
-        userRepository.save(user);
+    public String registerUser(@RequestParam("password") String password,
+                               @RequestParam("confirmPassword") String confirmPassword,
+                               @ModelAttribute User user,
+                               Model model) {
+        if (!password.equals(confirmPassword)) {
+            model.addAttribute("message", "Passwords do not match!");
+            return "registration"; // Return to the registration page with an error message
+        }
+
+        userRepository.save(user); // Save the user if passwords match
         model.addAttribute("message", "User registered successfully! Your ID is: " + user.getId());
         return "registration";
     }

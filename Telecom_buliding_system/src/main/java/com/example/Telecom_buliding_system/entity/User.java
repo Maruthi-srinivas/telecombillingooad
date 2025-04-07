@@ -11,6 +11,7 @@ public class User {
 
     private String name;
     private String email;
+    private String phoneNumber; // New field for phone number
 
     @OneToMany(mappedBy = "user")
     private List<Bill> bills;
@@ -38,6 +39,14 @@ public class User {
     
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public List<Bill> getBills() {
