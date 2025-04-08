@@ -10,5 +10,5 @@ document.addEventListener("DOMContentLoaded", function () {
             preloader.style.display = "none"; // Hide the preloader
             mainContent.style.display = "block"; // Show the main content
         }, 1000); // Wait for the fade-out animation to complete
-    }, 3000); // Adjust the time as needed
+    }, 2800); // Adjust the time as needed
 });
