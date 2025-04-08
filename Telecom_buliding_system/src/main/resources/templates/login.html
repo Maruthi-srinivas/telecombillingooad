@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Telecom Billing</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/plans">Plans</a></li>
+                <li><a href="/bills">Bills</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/login" class="btn-login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <section class="login">
         <h2>Login</h2>
         <form action="/login" method="post">
@@ -22,5 +36,9 @@
         </form>
         <div th:if="${error}" class="error" th:text="${error}"></div>
     </section>
+
+    <footer>
+        <p>&copy; 2025 Telecom Billing System. All rights reserved.</p>
+    </footer>
 </body>
 </html>

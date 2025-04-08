@@ -473,18 +473,6 @@ footer {
     color: #555; /* Visible font color */
 }
 
-.contact ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 30px;
-}
-
-.contact ul li {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    color: #333; /* Consistent text color */
-}
-
 .contact form {
     max-width: 600px;
     margin: 0 auto;
@@ -550,7 +538,7 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 50px 20px;
-    background-color: #f4f4f4;
+    background-color: black; /* Match the background color of other pages */
     min-height: 80vh;
     animation: fadeIn 1.5s ease-in-out;
 }
@@ -558,7 +546,7 @@ footer {
 .login h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: #333;
+    color: white; /* Match the text color of other pages */
 }
 
 .login form {
@@ -580,7 +568,7 @@ footer {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #333;
+    color: black; /* Match the label color of other pages */
 }
 
 .login form input {

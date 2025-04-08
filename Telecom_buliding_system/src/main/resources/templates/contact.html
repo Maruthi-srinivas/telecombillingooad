@@ -16,6 +16,7 @@
                 <li><a href="/plans">Plans</a></li>
                 <li><a href="/bills">Bills</a></li>
                 <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/login" class="btn-login">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -24,19 +25,19 @@
         <h2>Contact Us</h2>
         <p>If you have any questions or need assistance, feel free to reach out to us:</p>
         <ul>
-            <li><strong>Customer Care Number:</strong> <span th:text="${customerCareNumber}">1800-123-4567</span></li>
+            <li><strong>Customer Care Number:</strong> <span th:text="${customerCareNumber}">7671819594</span></li>
             <li><strong>Email:</strong> <span th:text="${email}">support@telecombilling.com</span></li>
-            <li><strong>Working Hours:</strong> <span th:text="${workingHours}">Monday to Friday, 9 AM to 6 PM</span></li>
+            <li><strong>Working Hours:</strong> <span th:text="${workingHours}">24/7 ROUND THE CLOCK</span></li>
         </ul>
         <h3>Send Us a Message</h3>
         <form action="/contact" method="POST">
             <label for="name">Your Name:</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-            <label for="email">Your Email:</label>
+            <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-            <label for="message">Your Message:</label>
+            <label for="message">Message:</label>
             <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
 
             <button type="submit" class="btn">Send Message</button>
