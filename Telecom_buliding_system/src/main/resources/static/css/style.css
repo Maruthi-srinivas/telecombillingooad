@@ -382,6 +382,21 @@ footer {
     color: #696969;
 }
 
+.bills table td a {
+    display: inline-block; /* Ensures buttons are treated as inline-block elements */
+    margin-right: 10px; /* Adds spacing between buttons */
+    text-decoration: none; /* Removes underline from links */
+    padding: 5px 10px; /* Adds padding inside the buttons */
+    border-radius: 5px; /* Rounds the corners of the buttons */
+    background-color: #007bff; /* Button background color */
+    color: white; /* Button text color */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.bills table td a:hover {
+    background-color: #0056b3; /* Darker background on hover */
+}
+
 /* Features Section */
 .features {
     padding: 50px 20px;
