@@ -221,11 +221,14 @@ body {
 }
 
 footer {
-    text-align: center;
-    padding: 10px;
-    background-color: black;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000; /* adjust as needed */
     color: white;
-    margin-top: 20px;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 10;
 }
 
 .no-plans {

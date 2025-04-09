@@ -4,6 +4,7 @@ import com.example.Telecom_buliding_system.entity.User;
 import com.example.Telecom_buliding_system.repository.UserRepository;
 import com.example.Telecom_buliding_system.repository.BillRepository;
 import com.example.Telecom_buliding_system.repository.PlanRepository;
+import com.example.Telecom_buliding_system.util.JwtUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,8 @@ public class LoginController {
     private final BillRepository billRepository;
     private final PlanRepository planRepository;
 
-    public LoginController(UserRepository userRepository, BillRepository billRepository, PlanRepository planRepository) {
+    public LoginController(UserRepository userRepository, BillRepository billRepository,
+            PlanRepository planRepository) {
         this.userRepository = userRepository;
         this.billRepository = billRepository;
         this.planRepository = planRepository;
@@ -34,7 +36,10 @@ public class LoginController {
             Model model) {
         User user = userRepository.findByName(name);
         if (user != null && user.getPassword().equals(password)) {
+
+            String token = JwtUtil.generateToken(String.valueOf(user.getId()), user.getName());
             session.setAttribute("loggedInUser", user);
+            session.setAttribute("jwtToken", token);
 
             // Fetch user-specific data
             model.addAttribute("bills", billRepository.findByUserId(user.getId()));

@@ -3,6 +3,8 @@ package com.example.telecom.controller;
 import com.example.Telecom_buliding_system.entity.User;
 import com.example.Telecom_buliding_system.repository.BillRepository;
 import com.example.Telecom_buliding_system.repository.PlanRepository;
+import com.example.Telecom_buliding_system.util.JwtUtil;
+
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,14 +27,16 @@ public class MainController {
     @GetMapping("/")
     public String home(HttpSession session, Model model) {
         User loggedInUser = (User) session.getAttribute("loggedInUser");
-        if (loggedInUser != null) {
-            // Fetch user-specific data
-            model.addAttribute("bills", billRepository.findByUserId(loggedInUser.getId()));
-            model.addAttribute("plans", planRepository.findAll());
-        } else {
-            model.addAttribute("bills", null);
-            model.addAttribute("plans", null);
+        String token = (String) session.getAttribute("jwtToken");
+
+        if (loggedInUser == null || token == null || JwtUtil.isTokenValid(token) == false) {
+            return "redirect:/login";
         }
+        // Fetch user-specific data
+        Long userId = Long.parseLong(JwtUtil.getUserIdFromToken(token));
+        model.addAttribute("bills", billRepository.findByUserId(userId));
+        model.addAttribute("plans", planRepository.findAll());
+
         return "index"; // Renders index.html
     }
 
@@ -40,7 +44,7 @@ public class MainController {
     @GetMapping("/plans")
     public String plans(Model model) {
         // Add plans data to the model (mock data for now)
-        model.addAttribute("plans", new String[]{"Plan A", "Plan B", "Plan C"});
+        model.addAttribute("plans", new String[] { "Plan A", "Plan B", "Plan C" });
         return "plans"; // Renders plans.html
     }
 
@@ -48,7 +52,7 @@ public class MainController {
     @GetMapping("/bills")
     public String bills(Model model) {
         // Add bills data to the model (mock data for now)
-        model.addAttribute("bills", new String[]{"Bill 1", "Bill 2", "Bill 3"});
+        model.addAttribute("bills", new String[] { "Bill 1", "Bill 2", "Bill 3" });
         return "bills"; // Renders bills.html
     }
 

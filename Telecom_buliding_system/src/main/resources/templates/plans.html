@@ -27,7 +27,12 @@
                 <li><a href="/plans">Plans</a></li>
                 <li><a href="/bills">Bills</a></li>
                 <li><a href="/contact">Contact Us</a></li>
-                <li><a href="/login" class="btn-login">Login</a></li> <!-- Add Login Button -->
+                <li th:if="${#httpServletRequest.cookies['JSESSIONID'] == null}">
+                    <a href="/login" class="btn-login">Login</a>
+                </li>
+                <li th:if="${#httpServletRequest.cookies['JSESSIONID'] != null}">
+                    <a href="/logout" class="btn-login">Login</a>
+                </li>
             </ul>
         </nav>
     </header>
