@@ -42,6 +42,7 @@
                     <th>Plan Name</th>
                     <th>Amount</th>
                     <th>Status</th>
+                    <th>Payment</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +52,12 @@
                     <td th:text="${bill.plan.name}">Plan A</td>
                     <td th:text="${bill.amount}">$50.00</td>
                     <td th:text="${bill.status}">Pending</td>
+                    <td>
+                        <!-- Show the "Pay Now" button only if the logged-in user is not an admin and the bill status is not "Successful" -->
+                        <a th:if="${loggedInUser.role != 'ADMIN' and bill.status != 'Successful'}" 
+                           th:href="'/bills/payment?billId=' + ${bill.id}" 
+                           class="btn">Pay Now</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

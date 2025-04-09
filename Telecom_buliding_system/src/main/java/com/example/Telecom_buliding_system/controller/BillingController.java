@@ -234,6 +234,8 @@ public class BillingController {
             return "redirect:/login"; // Redirect to login if no user is logged in
         }
 
+        model.addAttribute("loggedInUser", loggedInUser); // Add logged-in user to the model
+
         if ("ADMIN".equalsIgnoreCase(loggedInUser.getRole())) {
             // Admin can see all bills
             List<Bill> allBills = billRepository.findAll();
@@ -245,5 +247,31 @@ public class BillingController {
         }
 
         return "bills"; // Render the bills.html template
+    }
+
+    @GetMapping("/bills/payment")
+    public String paymentPage(@RequestParam("billId") Long billId, Model model) {
+        Optional<Bill> bill = billRepository.findById(billId);
+        if (bill.isPresent()) {
+            model.addAttribute("bill", bill.get());
+            return "payment"; // Render the payment.html template
+        } else {
+            model.addAttribute("error", "Invalid Bill ID.");
+            return "redirect:/bills"; // Redirect to bills page if the bill is invalid
+        }
+    }
+
+    @PostMapping("/bills/payment")
+    public String processPayment(@RequestParam("billId") Long billId, Model model) {
+        Optional<Bill> bill = billRepository.findById(billId);
+        if (bill.isPresent()) {
+            Bill existingBill = bill.get();
+            existingBill.setStatus("Successful"); // Update the bill status
+            billRepository.save(existingBill); // Save the updated bill to the database
+            model.addAttribute("message", "Payment successful for Bill ID: " + billId);
+        } else {
+            model.addAttribute("error", "Invalid Bill ID.");
+        }
+        return "redirect:/bills"; // Redirect back to the bills page
     }
 }
