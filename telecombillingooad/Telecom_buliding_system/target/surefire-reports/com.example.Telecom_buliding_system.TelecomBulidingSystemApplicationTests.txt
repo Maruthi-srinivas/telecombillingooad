@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.Telecom_buliding_system.TelecomBulidingSystemApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.572 s -- in com.example.Telecom_buliding_system.TelecomBulidingSystemApplicationTests
